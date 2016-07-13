@@ -31,7 +31,6 @@ var nextVal = 3;
 var temp = 2;
 
 while (nextVal < 4000000) {
-  console.log("heyyyy");
 
   if (nextVal % 2 === 0) {
     summ = summ + nextVal;
