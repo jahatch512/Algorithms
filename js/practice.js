@@ -31,6 +31,8 @@ var nextVal = 3;
 var temp = 2;
 
 while (nextVal < 4000000) {
+  console.log("heyyyy");
+
   if (nextVal % 2 === 0) {
     summ = summ + nextVal;
   }
@@ -42,23 +44,23 @@ while (nextVal < 4000000) {
 
 //prob 4
 
-// var dashes = function() {
-//   var output = '';
-//   var number = window.prompt("Enter a number");
-//   for (var i = 1; i <= number.length; i++) {
-//     if (number[i] === undefined){
-//       return output + number[i-1];
-//     }
-//
-//     var old = number[i-1];
-//     if ((old % 2 !== 0) && (number[i] % 2 !== 0)){
-//       output = output + number[i-1] + '-';
-//     } else {
-//       output = output + number[i-1];
-//     }
-//   }
-//   return output;
-// };
-// console.log(dashes());
+var dashes = function() {
+  var output = '';
+  var number = window.prompt("Enter a number");
+  for (var i = 1; i <= number.length; i++) {
+    if (number[i] === undefined){
+      return output + number[i-1];
+    }
+
+    var old = number[i-1];
+    if ((old % 2 !== 0) && (number[i] % 2 !== 0)){
+      output = output + number[i-1] + '-';
+    } else {
+      output = output + number[i-1];
+    }
+  }
+  return output;
+};
+console.log(dashes());
 
 console.log("5" % 2);
