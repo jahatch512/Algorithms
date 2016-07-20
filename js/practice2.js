@@ -19,7 +19,21 @@ function mode(arr){
   }
 
   console.log(modey);
-
 }
 
-mode([1,2,2,3,4]);
+
+function leap(year){
+  if (year % 4 === 0){
+    if (year % 100 === 0){
+      if (year % 400 === 0){
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return true;
+    }
+  } else {
+    return false;
+  }
+}
