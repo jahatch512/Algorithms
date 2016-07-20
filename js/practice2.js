@@ -37,3 +37,13 @@ function leap(year){
     return false;
   }
 }
+
+function missing(arr){
+  var inc = 1;
+  for (var i = 0; i < arr.length; i++){
+    if (arr[i] !== inc){
+      return inc;
+    }
+    inc += 1;
+  }
+}
