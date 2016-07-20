@@ -22,6 +22,21 @@
 			background-color: white;
 			position: absolute;
 		}
+
+
+    #player_2_score {
+      float: right;
+    }
+    #player_1_score {
+      float: left;
+    }
+
+    .score {
+      padding: 20px 20px;
+
+      color: white;
+    }
+
 	</style>
 </head>
 <body>
@@ -29,8 +44,9 @@
 		<div class="paddle" id="paddle_1"></div>
 		<div class="paddle" id="paddle_2"></div>
 		<div class="ball" id="ball"></div>
+    <div class="score" id="player_1_score"></div>
+    <div class="score" id="player_2_score"></div>
 	</div>
-	<div id="player_1_score"></div>
 
 	<script>
 	/*
@@ -62,11 +78,22 @@
 
 	var player_1_score_element = document.getElementById("player_1_score");
 	var player_1_score = 0;
+	var player_2_score_element = document.getElementById("player_2_score");
+	var player_2_score = 0;
 
 	function onMouseMove(evt) {
 		paddle_1_model.y = evt.pageY - evt.target.offsetTop - 50;
 	}
 
+  //reset
+  function reset(){
+    ball_model.x = 300
+    ball_model.y = 300
+    paddle_1_model.x = 20;
+    paddle_1_model.y = 200;
+    paddle_2_model.x = 760;
+    paddle_2_model.y = 200;
+  }
 
 	//update
 	function update(){
@@ -80,6 +107,27 @@
 			//flip the y direction
 			ball_model.vy = ball_model.vy * -1;
 		}
+
+    if ((ball_model.x > paddle_1_model.x) && (ball_model.x < paddle_1_model.x+20)){
+      if((ball_model.y < paddle_1_model.y+100) && (ball_model.y > paddle_1_model.y)){
+        ball_model.vx = ball_model.vx * -1;
+      }
+    }
+
+    if ((ball_model.x+20 > paddle_2_model.x) && (ball_model.x+20 < paddle_2_model.x+20)){
+      if((ball_model.y < paddle_2_model.y+100) && (ball_model.y > paddle_2_model.y)){
+        ball_model.vx = ball_model.vx * -1;
+      }
+    }
+
+
+    if (ball_model.x < 0){
+      player_2_score = player_2_score + 1;
+      reset();
+    } else if (ball_model.x > 800){
+      player_1_score = player_1_score + 1;
+      reset();
+    }
 	}
 	//draw
 	function draw() {
@@ -95,7 +143,8 @@
 		ball_element.style.left = ball_model.x + "px";
 
 		//draw the players' scores
-		player_1_score_element.innerHTML = player_1_score;
+		player_1_score_element.innerHTML = "Player 1 Score: " + player_1_score;
+		player_2_score_element.innerHTML = "Player 2 Score: " + player_2_score;
 	}
 
 	function loop() {
@@ -103,16 +152,25 @@
 		draw();
 	}
 
-	document.getElementById("screen").onmousemove = onMouseMove;
+
 	setInterval(loop, 1000/30);
 
   document.addEventListener('keydown', function(event){
       if (event.keyCode === 38){
         event.preventDefault();
-        paddle_2_model.y = paddle_2_model.y-10;
+        paddle_2_model.y = paddle_2_model.y-20;
       } else if (event.keyCode === 40){
         event.preventDefault();
-        paddle_2_model.y = paddle_2_model.y+10;
+        paddle_2_model.y = paddle_2_model.y+20;
+      }
+  });
+  document.addEventListener('keydown', function(event){
+      if (event.keyCode === 87){
+        event.preventDefault();
+        paddle_1_model.y = paddle_1_model.y-20;
+      } else if (event.keyCode === 83){
+        event.preventDefault();
+        paddle_1_model.y = paddle_1_model.y+20;
       }
   });
 
