@@ -140,4 +140,25 @@ var mergeList = function(arr1, arr2){
   return merged;
 };
 
-console.log(mergeList([1,2,4,6], [3,5,7]));
+var subSum = function(arr) {
+  var sum1 = arr[0];
+  var finalAnswer = [];
+  var tempSum = 0;
+  for (var i = 0; i < arr.length; i++) {
+    for (var j = i+1; j < arr.length; j++) {
+      var sliced = arr.slice(i, j+1);
+      sliced.forEach(function(el){
+        tempSum += el;
+      });
+      if (tempSum > sum1){
+        finalAnswer = sliced;
+        sum1 = tempSum;
+      }
+      tempSum = 0;
+    }
+  }
+  return finalAnswer;
+};
+
+var a = {1: 2, "a": 3, 4 : "yes"};
+console.log(a);
