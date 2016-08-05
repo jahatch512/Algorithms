@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<?xml:stylesheet type="text/xsl" href="sample.xsl" ?>
+<article>
+<chapter>
+<title>Chapter 1</title>
+<body>Start of chapter 1</body>
+</chapter>
+<chapter>
+<title>Chapter 2</title>
+<body>Start of chapter 2</body>
+</chapter>
+</article>
